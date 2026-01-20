@@ -2,305 +2,847 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ns Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ns Shop Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- 1. Basic Setup & White Theme --- */
+        /* --- 1. PREMIUM VARIABLES & RESET --- */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #8b5cf6; /* Violet */
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: #2dd4bf; /* Teal */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger: #ef4444;
+            --success: #10b981;
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f2f4f8; /* Halka sa grey taki white cards chamke */
-            color: #333;
-            padding-bottom: 80px; /* Bottom menu ke liye jagah */
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- 2. Header (Top Bar) --- */
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 90px; /* Space for bottom nav */
+            overflow-x: hidden;
+        }
+
+        /* --- 2. ADVANCED COMPONENTS --- */
+        
+        /* Glass Header */
         .header {
-            background-color: white;
-            padding: 15px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #2c3e50; /* Dark Blue Text */
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .login-btn {
-            background-color: #00b894; /* Green button */
-            color: white;
-            border: none;
-            padding: 8px 15px;
+
+        .user-chip {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             cursor: pointer;
         }
 
-        /* --- 3. Hero Section (Banner) --- */
-        .hero {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        .login-btn {
+            background: var(--primary);
             color: white;
-            padding: 25px 20px;
-            border-radius: 0 0 25px 25px;
-            text-align: center;
-            margin-bottom: 20px;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            box-shadow: 0 0 15px var(--primary-glow);
+            cursor: pointer;
+            transition: transform 0.2s;
         }
-        .hero h2 { font-size: 20px; margin-bottom: 5px; }
-        .hero p { font-size: 12px; opacity: 0.9; }
+        .login-btn:active { transform: scale(0.95); }
 
-        /* --- 4. Categories (Icons) --- */
-        .section-title {
-            padding: 0 20px;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 15px;
+        /* Neon Hero Section */
+        .hero {
+            margin: 20px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
         }
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+        
+        /* Animated Background Blob */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.2); } }
+
+        .hero h2 { font-size: 28px; margin-bottom: 5px; z-index: 1; position: relative; }
+        .hero p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; position: relative; z-index: 1; }
+
+        /* Search Input */
+        .search-box {
+            position: relative;
+            z-index: 2;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 45px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Categories (Horizontal Scroll) */
+        .section-title { padding: 0 20px; margin-bottom: 15px; font-weight: 700; color: var(--accent); font-size: 16px; }
+        
+        .category-scroll {
+            display: flex;
             gap: 15px;
-            padding: 0 20px;
-            margin-bottom: 30px;
+            overflow-x: auto;
+            padding: 0 20px 20px 20px;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
         }
-        .cat-item {
+        .category-scroll::-webkit-scrollbar { display: none; }
+
+        .cat-card {
+            min-width: 70px;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
         }
         .cat-icon {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            color: #6c5ce7;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            margin-bottom: 8px;
-            transition: transform 0.2s;
-        }
-        .cat-item:active .cat-icon { transform: scale(0.9); }
-        .cat-name { font-size: 11px; font-weight: 600; color: #555; }
-
-        /* --- 5. Product Listings (Buy Section) --- */
-        .product-list {
-            padding: 0 20px;
-        }
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-        }
-        .prod-img {
             width: 60px;
             height: 60px;
-            background-color: #eee;
-            border-radius: 10px;
+            border-radius: 18px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-right: 15px;
-            font-size: 24px;
-            color: #888;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            transition: all 0.3s;
         }
-        .prod-info { flex: 1; }
-        .prod-name { font-weight: bold; font-size: 14px; margin-bottom: 4px; }
-        .prod-price { color: #00b894; font-weight: 800; }
-        .buy-btn {
-            background: #2d3436;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
+        .cat-card.active .cat-icon {
+            background: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+            border-color: var(--primary);
+        }
+        .cat-name { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+
+        /* Filter Chips */
+        .filters {
+            display: flex;
+            gap: 10px;
+            padding: 0 20px 20px;
+            overflow-x: auto;
+        }
+        .chip {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.03);
             font-size: 12px;
+            white-space: nowrap;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .chip.active {
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            border-color: var(--accent);
         }
 
-        /* --- 6. Curved Bottom Menu (Magic Part) --- */
-        .bottom-nav {
+        /* Product List Grid */
+        .product-grid {
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile mein 1 column */
+            gap: 15px;
+        }
+
+        .product-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .prod-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--accent);
+            overflow: hidden;
+        }
+        .prod-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .prod-info { flex: 1; }
+        .prod-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+        .prod-meta { display: flex; gap: 8px; font-size: 11px; margin-bottom: 8px; color: var(--text-muted); }
+        .badge { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
+        
+        .prod-footer { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 18px; font-weight: 800; color: var(--accent); }
+        
+        .buy-btn {
+            background: white;
+            color: #0f172a;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* --- 3. BOTTOM NAVIGATION (CURVED) --- */
+        .nav-bar {
             position: fixed;
             bottom: 0;
-            left: 0;
             width: 100%;
-            height: 70px;
-            background-color: white;
-            border-top-left-radius: 30px; /* Ye banata hai curve */
-            border-top-right-radius: 30px; /* Ye banata hai curve */
+            height: 75px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            border-radius: 25px 25px 0 0;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 1000;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
         }
+
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #b2bec3;
-            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 10px;
+            gap: 4px;
             width: 50px;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .nav-item.active { color: #6c5ce7; }
-        .nav-icon { font-size: 20px; margin-bottom: 4px; }
-        .nav-text { font-size: 10px; font-weight: 600; }
+        .nav-item i { font-size: 20px; transition: 0.3s; }
+        .nav-item.active { color: var(--accent); }
+        .nav-item.active i { transform: translateY(-5px); text-shadow: 0 0 10px var(--accent); }
 
         /* Floating Sell Button */
-        .sell-circle {
-            width: 60px;
-            height: 60px;
-            background-color: #6c5ce7;
+        .sell-btn-wrapper {
+            position: relative;
+            top: -35px;
+            width: 70px;
+            height: 70px;
+            background: #0f172a; /* Same as body bg to hide overlap */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-size: 24px;
-            margin-top: -40px; /* Upar uthane ke liye */
-            border: 5px solid #f2f4f8; /* Gap dikhane ke liye */
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
-            cursor: pointer;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
         }
+        .sell-btn {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 0 20px var(--primary-glow);
+            cursor: pointer;
+            border: 2px solid white;
+            animation: glow 3s infinite;
+        }
+        @keyframes glow { 0% { box-shadow: 0 0 10px var(--primary-glow); } 50% { box-shadow: 0 0 25px var(--primary-glow); } 100% { box-shadow: 0 0 10px var(--primary-glow); } }
+
+        /* --- 4. MODALS (Popups) --- */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: flex-end; /* Mobile style: slide from bottom */
+        }
+        .modal.open { display: flex; }
+
+        .modal-content {
+            background: #1e1b4b;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 25px 25px 0 0;
+            padding: 25px;
+            border-top: 1px solid var(--glass-border);
+            animation: slideUpModal 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        @keyframes slideUpModal { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-title { font-size: 20px; font-weight: 700; color: white; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; }
+
+        /* Inputs in Modal */
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+        .form-input:focus { border-color: var(--accent); }
+        
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 15px var(--primary-glow); }
+        .btn-accent { background: var(--accent); color: #0f172a; }
+
+        .upload-box {
+            border: 2px dashed var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .preview-area img { width: 60px; height: 60px; border-radius: 8px; border: 1px solid var(--glass-border); margin-right: 10px; }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(30, 41, 59, 0.95);
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            min-width: 250px;
+        }
+        .toast.show { opacity: 1; top: 40px; }
+        .toast-icon { width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .toast.success .toast-icon { background: var(--success); color: white; }
+        .toast.error .toast-icon { background: var(--danger); color: white; }
+
+        .empty-state { text-align: center; padding: 50px 20px; color: var(--text-muted); }
+        .empty-state i { font-size: 50px; margin-bottom: 15px; opacity: 0.3; }
 
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="logo">Ns shop</div>
-        <button class="login-btn" onclick="openLogin()">Login</button>
+        <div class="logo">
+            <i class="fas fa-cube" style="color: var(--accent);"></i> Ns Shop
+        </div>
+        <div id="authContainer">
+            <button class="login-btn" onclick="openModal('authModal')">Login</button>
+        </div>
     </div>
 
     <div class="hero">
         <h2>Sell Old Gadgets</h2>
-        <p>Get instant cash for your used electronics.</p>
+        <p>Instant cash for your used electronics.</p>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search Mobile, Laptop..." oninput="filterProducts()">
+        </div>
     </div>
 
-    <div class="section-title">What do you want to sell?</div>
-    <div class="category-grid">
-        <div class="cat-item" onclick="selectCategory('Mobile')">
+    <div class="section-title">Categories</div>
+    <div class="category-scroll">
+        <div class="cat-card active" onclick="filterCategory(this, 'All')">
+            <div class="cat-icon"><i class="fas fa-th-large"></i></div>
+            <span class="cat-name">All</span>
+        </div>
+        <div class="cat-card" onclick="filterCategory(this, 'Mobile')">
             <div class="cat-icon"><i class="fas fa-mobile-alt"></i></div>
             <span class="cat-name">Mobile</span>
         </div>
-        <div class="cat-item" onclick="selectCategory('Laptop')">
+        <div class="cat-card" onclick="filterCategory(this, 'Laptop')">
             <div class="cat-icon"><i class="fas fa-laptop"></i></div>
             <span class="cat-name">Laptop</span>
         </div>
-        <div class="cat-item" onclick="selectCategory('Smartwatch')">
+        <div class="cat-card" onclick="filterCategory(this, 'Watch')">
             <div class="cat-icon"><i class="fas fa-clock"></i></div>
             <span class="cat-name">Watch</span>
         </div>
-        <div class="cat-item" onclick="selectCategory('Earbuds')">
-            <div class="cat-icon"><i class="fas fa-headphones"></i></div>
-            <span class="cat-name">Audio</span>
-        </div>
-        <div class="cat-item" onclick="selectCategory('Camera')">
+        <div class="cat-card" onclick="filterCategory(this, 'Camera')">
             <div class="cat-icon"><i class="fas fa-camera"></i></div>
             <span class="cat-name">Camera</span>
         </div>
-        <div class="cat-item" onclick="selectCategory('Powerbank')">
-            <div class="cat-icon"><i class="fas fa-battery-full"></i></div>
-            <span class="cat-name">Power</span>
-        </div>
-        <div class="cat-item" onclick="selectCategory('Charger')">
-            <div class="cat-icon"><i class="fas fa-plug"></i></div>
-            <span class="cat-name">Charger</span>
-        </div>
-        <div class="cat-item" onclick="selectCategory('More')">
-            <div class="cat-icon"><i class="fas fa-ellipsis-h"></i></div>
-            <span class="cat-name">More</span>
+        <div class="cat-card" onclick="filterCategory(this, 'Gaming')">
+            <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
+            <span class="cat-name">Gaming</span>
         </div>
     </div>
 
-    <div class="section-title">Recently Listed for Sale</div>
-    <div class="product-list">
-        <div class="product-card">
-            <div class="prod-img"><i class="fas fa-mobile-alt"></i></div>
-            <div class="prod-info">
-                <div class="prod-name">iPhone 12 (Used)</div>
-                <div class="prod-price">₹22,000</div>
-            </div>
-            <button class="buy-btn" onclick="buyItem('iPhone 12')">Buy</button>
-        </div>
-        <div class="product-card">
-            <div class="prod-img"><i class="fas fa-laptop"></i></div>
-            <div class="prod-info">
-                <div class="prod-name">Dell XPS 13 (Old)</div>
-                <div class="prod-price">₹35,000</div>
-            </div>
-            <button class="buy-btn" onclick="buyItem('Dell XPS')">Buy</button>
-        </div>
+    <div class="filters">
+        <div class="chip active" onclick="sortProducts(this, 'new')">Newest</div>
+        <div class="chip" onclick="sortProducts(this, 'low')">Price: Low</div>
+        <div class="chip" onclick="sortProducts(this, 'high')">Price: High</div>
     </div>
 
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="navClick(this)">
-            <i class="fas fa-home nav-icon"></i>
-            <span class="nav-text">Home</span>
+    <div class="section-title">Fresh Listings</div>
+    <div class="product-grid" id="productList">
         </div>
-        <div class="nav-item" onclick="navClick(this)">
-            <i class="fas fa-shopping-bag nav-icon"></i>
-            <span class="nav-text">Orders</span>
+
+    <div class="nav-bar">
+        <div class="nav-item active" onclick="switchTab(this, 'home')">
+            <i class="fas fa-home"></i> <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="switchTab(this, 'ads')">
+            <i class="fas fa-layer-group"></i> <span>My Ads</span>
         </div>
         
-        <div class="sell-circle" onclick="openSellPage()">
-            <i class="fas fa-plus"></i>
+        <div class="sell-btn-wrapper">
+            <div class="sell-btn" onclick="openSellModal()">
+                <i class="fas fa-plus"></i>
+            </div>
         </div>
 
-        <div class="nav-item" onclick="navClick(this)">
-            <i class="fas fa-comment-alt nav-icon"></i>
-            <span class="nav-text">Chat</span>
+        <div class="nav-item" onclick="switchTab(this, 'orders')">
+            <i class="fas fa-shopping-bag"></i> <span>Orders</span>
         </div>
-        <div class="nav-item" onclick="navClick(this)">
-            <i class="fas fa-user nav-icon"></i>
-            <span class="nav-text">Profile</span>
+        <div class="nav-item" onclick="switchTab(this, 'profile')">
+            <i class="fas fa-user"></i> <span>Profile</span>
         </div>
+    </div>
+
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Welcome Back</div>
+                <button class="close-btn" onclick="closeModal('authModal')">&times;</button>
+            </div>
+            
+            <div id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="user@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="loginPass" class="form-input" placeholder="••••••">
+                </div>
+                <button class="action-btn btn-primary" onclick="handleLogin()">Login</button>
+                <p style="text-align: center; font-size: 12px; margin-top: 15px; color: var(--text-muted);">
+                    New here? <span style="color: var(--accent); cursor: pointer;" onclick="toggleAuth('signup')">Create Account</span>
+                </p>
+            </div>
+
+            <div id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="signName" class="form-input" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="signEmail" class="form-input" placeholder="user@example.com">
+                </div>
+                <button class="action-btn btn-accent" onclick="handleSignup()">Create Account</button>
+                <p style="text-align: center; font-size: 12px; margin-top: 15px; color: var(--text-muted);">
+                    Have account? <span style="color: var(--primary); cursor: pointer;" onclick="toggleAuth('login')">Login</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="sellModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Sell Gadget</div>
+                <button class="close-btn" onclick="closeModal('sellModal')">&times;</button>
+            </div>
+            
+            <div class="upload-box" onclick="document.getElementById('imgUpload').click()">
+                <i class="fas fa-camera" style="font-size: 24px; margin-bottom: 5px;"></i>
+                <div>Tap to Upload Photo</div>
+            </div>
+            <input type="file" id="imgUpload" hidden accept="image/*" onchange="previewImage(event)">
+            <div class="preview-area" id="previewArea"></div>
+
+            <div class="form-group">
+                <label class="form-label">Product Name</label>
+                <input type="text" id="prodName" class="form-input" placeholder="e.g. iPhone 13 Pro">
+            </div>
+
+            <div class="form-group" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Category</label>
+                    <select id="prodCat" class="form-select">
+                        <option value="Mobile">Mobile</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Watch">Watch</option>
+                        <option value="Camera">Camera</option>
+                        <option value="Gaming">Gaming</option>
+                    </select>
+                </div>
+                <div style="flex: 1;">
+                    <label class="form-label">Price (₹)</label>
+                    <input type="number" id="prodPrice" class="form-input" placeholder="25000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Condition</label>
+                <select id="prodCond" class="form-select">
+                    <option value="Like New">Like New</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                </select>
+            </div>
+
+            <button class="action-btn btn-accent" onclick="submitProduct()">List Now</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <div class="toast-icon" id="toastIcon"><i class="fas fa-check"></i></div>
+        <span id="toastMsg" style="font-size: 13px; font-weight: 500;">Success message</span>
     </div>
 
     <script>
-        // --- Yeh Script Button ko zinda karti hai ---
+        // --- DATA & STATE ---
+        let products = [
+            { id: 1, name: "iPhone 12 Mini", category: "Mobile", price: 22000, condition: "Good", img: "fas fa-mobile-alt", isIcon: true },
+            { id: 2, name: "MacBook Air M1", category: "Laptop", price: 45000, condition: "Like New", img: "fas fa-laptop", isIcon: true },
+            { id: 3, name: "Sony PS4 Slim", category: "Gaming", price: 15000, condition: "Fair", img: "fas fa-gamepad", isIcon: true },
+            { id: 4, name: "Canon 200D", category: "Camera", price: 32000, condition: "Like New", img: "fas fa-camera", isIcon: true }
+        ];
 
-        function openLogin() {
-            alert("Login Page khul raha hai... (Backend needed)");
-        }
+        let currentUser = null;
+        let currentFilter = 'All';
+        let uploadedImgData = null;
 
-        function selectCategory(name) {
-            console.log("Category clicked: " + name);
-            alert(name + " category ki list load ho rahi hai...");
-        }
+        // --- INIT ---
+        window.onload = () => {
+            renderProducts();
+            checkUser();
+        };
 
-        function buyItem(itemName) {
-            alert("Aapne select kiya: " + itemName + "\nPayment gateway jald hi aayega!");
-        }
+        // --- RENDER FUNCTION ---
+        function renderProducts(data = products) {
+            const container = document.getElementById('productList');
+            container.innerHTML = "";
 
-        function openSellPage() {
-            alert("Apna purana gadget bechne ke liye photo upload karein.");
-        }
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-ghost"></i>
+                        <p>No gadgets found here.</p>
+                    </div>`;
+                return;
+            }
 
-        function navClick(element) {
-            // Purane active button ko normal karo
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
+            data.forEach(item => {
+                // Handle Image (Icon vs Real Photo)
+                let imageHTML = item.isIcon 
+                    ? `<i class="${item.img}"></i>` 
+                    : `<img src="${item.img}">`;
+
+                const card = `
+                    <div class="product-card">
+                        <div class="prod-img">${imageHTML}</div>
+                        <div class="prod-info">
+                            <div class="prod-name">${item.name}</div>
+                            <div class="prod-meta">
+                                <span class="badge">${item.category}</span> • ${item.condition}
+                            </div>
+                            <div class="prod-footer">
+                                <div class="price">₹${item.price.toLocaleString()}</div>
+                                <button class="buy-btn" onclick="showToast('Added to Cart', 'success')">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
             });
-            // Naye button ko active (purple) karo
-            element.classList.add('active');
+        }
+
+        // --- FILTER & SORT ---
+        function filterCategory(el, cat) {
+            // Update UI
+            document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            
+            currentFilter = cat;
+            if (cat === 'All') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.category.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
+
+        function sortProducts(el, type) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+
+            let sorted = [...products];
+            if (type === 'low') sorted.sort((a,b) => a.price - b.price);
+            if (type === 'high') sorted.sort((a,b) => b.price - a.price);
+            if (type === 'new') sorted.sort((a,b) => b.id - a.id);
+            
+            renderProducts(sorted);
+        }
+
+        // --- AUTH SYSTEM ---
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+        }
+
+        function toggleAuth(type) {
+            if(type === 'signup') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('signupForm').style.display = 'block';
+                document.querySelector('.modal-title').innerText = "Create Account";
+            } else {
+                document.getElementById('signupForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+                document.querySelector('.modal-title').innerText = "Welcome Back";
+            }
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            if(!email) return showToast("Enter email!", "error");
+            
+            currentUser = { name: email.split('@')[0], email: email };
+            updateUserUI();
+            closeModal('authModal');
+            showToast("Login Successful!", "success");
+        }
+
+        function handleSignup() {
+            const name = document.getElementById('signName').value;
+            if(!name) return showToast("Enter name!", "error");
+            
+            currentUser = { name: name };
+            updateUserUI();
+            closeModal('authModal');
+            showToast("Account Created!", "success");
+        }
+
+        function updateUserUI() {
+            const container = document.getElementById('authContainer');
+            container.innerHTML = `
+                <div class="user-chip" onclick="logout()">
+                    <i class="fas fa-user-circle"></i> ${currentUser.name}
+                </div>`;
+        }
+        
+        function checkUser() {
+            // Simulated session check
+        }
+
+        function logout() {
+            if(confirm("Logout?")) {
+                currentUser = null;
+                document.getElementById('authContainer').innerHTML = `
+                    <button class="login-btn" onclick="openModal('authModal')">Login</button>`;
+                showToast("Logged Out", "success");
+            }
+        }
+
+        // --- SELL PRODUCT LOGIC ---
+        function openSellModal() {
+            if(!currentUser) {
+                showToast("Please login to sell!", "error");
+                openModal('authModal');
+            } else {
+                openModal('sellModal');
+            }
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImgData = e.target.result;
+                    document.getElementById('previewArea').innerHTML = `<img src="${uploadedImgData}">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function submitProduct() {
+            const name = document.getElementById('prodName').value;
+            const price = document.getElementById('prodPrice').value;
+            const cat = document.getElementById('prodCat').value;
+            const cond = document.getElementById('prodCond').value;
+
+            if(!name || !price) return showToast("Fill all details!", "error");
+
+            const newProd = {
+                id: products.length + 1,
+                name: name,
+                price: parseInt(price),
+                category: cat,
+                condition: cond,
+                img: uploadedImgData || "fas fa-box-open", // Use uploaded img or default icon
+                isIcon: !uploadedImgData
+            };
+
+            products.unshift(newProd); // Add to top
+            renderProducts();
+            closeModal('sellModal');
+            
+            // Reset
+            document.getElementById('prodName').value = "";
+            document.getElementById('prodPrice').value = "";
+            document.getElementById('previewArea').innerHTML = "";
+            uploadedImgData = null;
+
+            showToast("Listed Successfully!", "success");
+        }
+
+        // --- UTILS ---
+        function showToast(msg, type) {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toastIcon');
+            const txt = document.getElementById('toastMsg');
+            
+            toast.className = `toast ${type} show`;
+            txt.innerText = msg;
+            
+            if(type === 'success') icon.innerHTML = '<i class="fas fa-check"></i>';
+            else icon.innerHTML = '<i class="fas fa-times"></i>';
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function switchTab(el, tab) {
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+            
+            if(tab === 'profile') {
+                if(currentUser) showToast(`Hello, ${currentUser.name}`, "success");
+                else showToast("Please Login first", "error");
+            }
+        }
+
+        // --- CLOSE MODAL ON OUTSIDE CLICK ---
+        window.onclick = function(e) {
+            if(e.target.classList.contains('modal')) {
+                e.target.classList.remove('open');
+            }
         }
     </script>
 </body>
