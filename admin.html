@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hukum Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+    <div class="admin-container">
+        <div id="login-screen" class="login-box">
+            <h2>🔒 Hukum Login</h2>
+            <input type="password" id="admin-pass" placeholder="Enter Password">
+            <button onclick="checkPass()" class="btn-royal">Enter</button>
+            <p id="error-msg" style="color:red; display:none;">Galat Password!</p>
+        </div>
+
+        <div id="upload-screen" style="display:none;">
+            <div class="admin-header">
+                <h2>Naya Maal Daliye</h2>
+                <button onclick="logout()" class="btn-small">Logout</button>
+            </div>
+
+            <form id="upload-form" class="royal-form">
+                <div class="form-group">
+                    <label>Product Ka Naam</label>
+                    <input type="text" id="p-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Photo Link (Image URL)</label>
+                    <input type="url" id="p-image" placeholder="https://..." required>
+                    <small>Tip: Amazon image par Right Click > 'Copy Image Address' karein</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Amazon Affiliate Link</label>
+                    <input type="url" id="p-link" placeholder="Your Amazon Link" required>
+                </div>
+
+                <button type="submit" class="btn-royal full-width">Upload & Boost (100+ Likes)</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+        // --- APNI API KEY YAHAN DALO ---
+        const URL = 'https://ihxdiydlnzpncqdylsla.supabase.co';
+        const KEY = 'Sb_publishable_lOpan6CsYv4S4HDu4tZ-bA_nJUPKTdl';
+        const supabase = createClient(URL, KEY);
+
+        // Password Logic
+        window.checkPass = () => {
+            const p = document.getElementById('admin-pass').value;
+            if(p === "admin123") { 
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('upload-screen').style.display = 'block';
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        }
+        
+        window.logout = () => location.reload();
+
+        // Upload Logic
+        document.getElementById('upload-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = "Uploading...";
+
+            // Random Likes Generate (100 se 300 ke beech)
+            const fakeLikes = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
+
+            const product = {
+                title: document.getElementById('p-title').value,
+                image_url: document.getElementById('p-image').value,
+                affiliate_url: document.getElementById('p-link').value,
+                likes: fakeLikes // Ye fake number database mein jayega
+            };
+
+            const { error } = await supabase.from('products').insert([product]);
+
+            if(error) {
+                alert("Error: " + error.message);
+            } else {
+                alert(`Badhai ho! Product live hai (${fakeLikes} fake likes ke sath).`);
+                e.target.reset();
+            }
+            btn.innerText = "Upload & Boost";
+        });
+    </script>
+</body>
+</html>
