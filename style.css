@@ -154,3 +154,87 @@ body {
 .toast { padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; font-size: 0.9rem; }
 .toast.success { background: #28a745; } .toast.error { background: #dc3545; }
 
+/* --- CONTACT PAGE STYLES --- */
+
+/* Back Link (Header mein) */
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+.back-link:hover { background: white; color: var(--red); }
+
+/* Royal Card */
+.contact-card {
+    background: white;
+    border: 4px double var(--gold); /* Shahi Border */
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.profile-frame {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px dashed var(--saffron);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.royal-title {
+    font-family: var(--font-heading);
+    color: var(--royal-blue);
+    margin: 5px 0;
+}
+
+/* Social Buttons */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-btn {
+    padding: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    display: block;
+}
+.social-btn:hover { transform: translateY(-3px); }
+
+/* Colors for Buttons */
+.insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.fb { background: #1877F2; }
+.mail { background: #EA4335; }
+
+/* Form Styles */
+.royal-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: var(--font-body);
+    margin-bottom: 10px;
+    resize: none;
+}
+.royal-form textarea:focus { border-color: var(--saffron); outline: none; }
