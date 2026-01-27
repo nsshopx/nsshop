@@ -1,40 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Desi Deals | Khamma Ghani</title>
+    <title>NS Shop - Royal Rajasthani Collection</title>
+    
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="royal-header">
-        <div class="pattern-top"></div>
-        <h1 class="brand-name">✨ NS SHOP STORE ✨</h1>
+        <div class="corner-pattern top-left"></div>
+        <div class="corner-pattern top-right"></div>
+        
+        <div class="brand-logo-container">
+            <svg class="ns-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="95" fill="#FFD700" stroke="#FF9933" stroke-width="3"/>
+                <circle cx="100" cy="100" r="85" fill="#D70040" stroke="#FFD700" stroke-width="2"/>
+                <path d="M 100 30 L 150 60 L 150 120 Q 150 150 100 170 Q 50 150 50 120 L 50 60 Z" fill="#003366" stroke="#FFD700" stroke-width="3"/>
+                <g fill="#FFD700" font-family="Cinzel, serif" font-weight="bold">
+                    <text x="65" y="110" font-size="45" stroke="#FF9933" stroke-width="1">N</text>
+                    <text x="105" y="110" font-size="45" stroke="#FF9933" stroke-width="1">S</text>
+                </g>
+                <g transform="translate(100, 25)">
+                    <path d="M -15 0 L -10 -8 L -5 0 L 0 -10 L 5 0 L 10 -8 L 15 0 L 12 5 L -12 5 Z" fill="#FFD700" stroke="#FF9933" stroke-width="1.5"/>
+                    <circle cx="-10" cy="-8" r="2" fill="#D70040"/>
+                    <circle cx="0" cy="-10" r="2.5" fill="#D70040"/>
+                    <circle cx="10" cy="-8" r="2" fill="#D70040"/>
+                </g>
+                <circle cx="70" cy="140" r="3" fill="#FFD700"/>
+                <circle cx="130" cy="140" r="3" fill="#FFD700"/>
+                <path d="M 60 145 L 140 145 L 135 155 L 100 150 L 65 155 Z" fill="#FFD700" stroke="#FF9933" stroke-width="1.5"/>
+            </svg>
+            
+            <div style="text-align: left;">
+                <h1 class="brand-name">NS SHOP</h1>
+                <p class="tagline">राजस्थानी शाही संग्रह</p>
+            </div>
+        </div>
         
         <div class="search-container">
-            <input type="text" id="search-box" placeholder="Search phones, watches...">
-            <button onclick="runSearch()">🔍</button>
+            <input type="text" id="search-box" placeholder="🔍 Find Royal Items...">
+            <button onclick="runSearch()">🔎</button>
         </div>
 
-        <div style="text-align:center; margin-top:10px;">
-            <a href="contact.html" style="color:white; text-decoration:underline; font-size:0.9rem;">📞 Sampark / Contact Us</a>
+        <div style="text-align:center; margin-top:15px;">
+            <a href="contact.html" style="color:var(--gold); text-decoration:none; font-weight:600; font-size:0.9rem; letter-spacing:1px; border-bottom:1px dashed var(--gold);">
+                📞 SAMPARK / CONTACT
+            </a>
         </div>
-
     </header>
 
     <main class="container">
         <div id="product-feed" class="feed-grid">
-            <div class="loading-mandala">Loading...</div>
+            <div class="loading-spinner"></div>
+            <p style="text-align:center; color:var(--royal-blue); margin-top:10px;">Shahi Khazana Load ho raha hai...</p>
         </div>
     </main>
 
     <footer class="royal-footer">
-        <p>© 2026 Rajasthani Deals • Affiliate Partner</p>
+        <div class="footer-content">
+            <svg class="footer-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="95" fill="#FFD700" stroke="#FF9933" stroke-width="3"/>
+                <circle cx="100" cy="100" r="85" fill="#D70040" stroke="#FFD700" stroke-width="2"/>
+                <path d="M 100 30 L 150 60 L 150 120 Q 150 150 100 170 Q 50 150 50 120 L 50 60 Z" fill="#003366" stroke="#FFD700" stroke-width="3"/>
+                <g fill="#FFD700" font-family="Cinzel, serif" font-weight="bold">
+                    <text x="65" y="110" font-size="45" stroke="#FF9933" stroke-width="1">N</text>
+                    <text x="105" y="110" font-size="45" stroke="#FF9933" stroke-width="1">S</text>
+                </g>
+            </svg>
+            <p><strong>© 2026 NS Shop</strong> - राजस्थानी शाही परंपरा</p>
+            <p>Made with ❤️ in Rajasthan</p>
+        </div>
     </footer>
 
     <script type="module" src="app.js"></script>
+
 </body>
 </html>
