@@ -153,3 +153,15 @@ window.postComment = async (e, id) => {
 
 // INIT
 loadFeed();
+// --- VISITOR COUNTER ---
+// Jaise hi page load ho, ginti badha do
+(async function countVisit() {
+    // Check karein ki ye Admin to nahi hai? (Admin ko count mat karo)
+    const isAdmin = localStorage.getItem('hukum_logged_in');
+    
+    // Agar banda Admin nahi hai, aur pehle count nahi kiya hai session mein
+    if (!isAdmin && !sessionStorage.getItem('visit_counted')) {
+        await supabase.rpc('increment_views'); // Database function call kiya
+        sessionStorage.setItem('visit_counted', 'true'); // Browser ko bata do ki iska count ho gaya
+    }
+})();
