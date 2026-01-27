@@ -1,0 +1,191 @@
+/* ===================================
+   NS SHOP - RESPONSIVE VINTAGE THEME
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Cinzel+Decorative:wght@400;700&family=Philosopher:wght@400;700&display=swap');
+
+:root {
+    --paper-bg: #E3C594; 
+    --dark-maroon: #581612; 
+    --gold-border: #9D7438;
+    --text-color: #3E2723;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background-color: var(--paper-bg);
+    background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+    font-family: 'Philosopher', sans-serif;
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden; /* Side scroll band */
+}
+
+/* ORNATE BORDER (Screen ke kinare) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border: 2px solid var(--gold-border);
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* --- PAGE WRAPPER (Laptop par Center karne ke liye) --- */
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Laptop par isse chauda nahi hoga */
+    margin: 0 auto; /* Beech mein rakho */
+    background: rgba(255, 255, 255, 0.1); /* Halka sa shine */
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    min-height: 100vh;
+}
+
+/* --- HEADER --- */
+.royal-header {
+    text-align: center;
+    padding: 20px 10px;
+    background: radial-gradient(circle at top, rgba(255,255,255,0.4), transparent 70%);
+}
+
+/* LOGO */
+.ns-logo-container { margin-bottom: 15px; }
+
+.ns-logo-text {
+    font-family: 'Rye', serif;
+    font-size: 3.5rem; /* Default size */
+    line-height: 1;
+    background: linear-gradient(to bottom, #B22222, #581612);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px 0px var(--gold-border));
+}
+
+.shop-text {
+    font-family: 'Rye', serif;
+    font-size: 1.5rem;
+    color: var(--dark-maroon);
+    margin-top: -5px;
+}
+
+/* SEARCH BAR */
+.search-container {
+    background: #FFF8E7;
+    border: 2px solid var(--dark-maroon);
+    border-radius: 50px;
+    padding: 5px 15px;
+    width: 90%; /* Mobile par full width na ho */
+    max-width: 500px; /* Laptop par limit */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#search-box {
+    border: none; background: transparent; flex: 1;
+    padding: 8px; font-size: 1rem; outline: none; color: var(--dark-maroon);
+}
+.search-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+
+/* --- GRID SYSTEM (Main Logic) --- */
+.container { 
+    padding: 20px 10px; 
+}
+
+.feed-grid { 
+    display: grid; 
+    gap: 15px; /* Mobile Gap */
+    /* Mobile Default: 2 Columns */
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+/* --- PRODUCT CARD --- */
+.product-card {
+    background: #FFF8E7;
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    /* Card ke andar content adjust ho */
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.img-frame {
+    background: #300A08;
+    width: 100%;
+    /* Aspect Ratio Box Trick */
+    aspect-ratio: 1 / 1; 
+    margin: 0 auto 10px;
+    border-radius: 50% 50% 50% 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px double var(--gold-border);
+    overflow: hidden;
+}
+
+.product-img { width: 90%; height: 90%; object-fit: contain; }
+
+.product-title {
+    font-family: 'Rye', serif;
+    color: var(--dark-maroon);
+    font-size: 1rem; /* Mobile Font Size */
+    margin-bottom: 8px;
+    /* 2 line se zyada text na ho */
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.btn-amazon {
+    background: #7B1F18; color: #FFD700; text-decoration: none;
+    padding: 6px 0; border-radius: 15px; display: block; width: 100%;
+    font-size: 0.8rem; border: 1px solid #FFD700;
+}
+
+.engagement-bar {
+    display: flex; justify-content: center; gap: 5px; margin-top: 8px;
+    border-top: 1px solid rgba(157, 116, 56, 0.3); padding-top: 5px;
+}
+
+.action-btn {
+    background: rgba(255,255,255,0.5); border: 1px solid var(--gold-border);
+    padding: 4px; border-radius: 4px; font-size: 0.7rem; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; width: 33%;
+}
+
+/* --- LAPTOP / TABLET MEDIA QUERY (Yahan Magic Hoga) --- */
+@media (min-width: 768px) {
+    /* Laptop Layout Starts Here */
+    
+    .page-wrapper {
+        border-left: 5px solid var(--gold-border);
+        border-right: 5px solid var(--gold-border);
+        margin-top: 20px; margin-bottom: 20px;
+        border-radius: 20px;
+    }
+
+    .ns-logo-text { font-size: 5rem; }
+    .shop-text { font-size: 2rem; }
+
+    .feed-grid {
+        /* Laptop: 4 Columns */
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 25px; /* Gap bada */
+    }
+
+    .product-card { padding: 15px; }
+    .product-title { font-size: 1.2rem; }
+    .btn-amazon { padding: 10px 0; font-size: 1rem; }
+    .action-btn { flex-direction: row; justify-content: center; gap: 5px; font-size: 0.85rem; }
+    
+    /* Search Bar Wings visible only on Laptop */
+    .search-container::before { content: '❧'; position: absolute; left: -40px; font-size: 2.5rem; color: var(--dark-maroon); }
+    .search-container::after { content: '❧'; position: absolute; right: -40px; font-size: 2.5rem; color: var(--dark-maroon); transform: scaleX(-1); }
+}
+
+/* Loading & Footer */
+.loading-box { text-align: center; padding: 40px; grid-column: 1 / -1; }
+.royal-footer { text-align: center; padding: 30px; border-top: 3px double var(--dark-maroon); margin-top: 20px;}
+.comments-section { background: rgba(255,255,255,0.7); padding: 5px; margin-top: 5px; display: none; text-align: left; font-size: 0.8rem;}
+.comments-section.active { display: block; position: absolute; z-index: 10; width: 90%; background: #FFF8E7; border: 1px solid var(--dark-maroon); }
