@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -10,7 +11,6 @@
 <body>
 
     <div class="page-wrapper">
-        
         <header class="royal-header">
             <div class="ns-logo-container">
                 <div class="ns-logo-text">NS</div>
@@ -21,33 +21,24 @@
                 <input type="text" id="search-box" placeholder="Search...">
                 <button class="search-btn" onclick="runSearch()">🔍</button>
             </div>
-
-            <div style="margin-top: 15px;">
-                <a href="contact.html" style="color:var(--dark-maroon); font-weight:bold; text-decoration:none; border-bottom: 1px dashed var(--dark-maroon);">
-                    📞 Contact Us
-                </a>
+            
+            <div style="margin-top:10px; text-align:center;">
+                <a href="contact.html" style="color:var(--text-color); font-weight:bold; text-decoration:none;">📞 Contact Us</a>
             </div>
         </header>
 
         <main class="container">
             <div id="product-feed" class="feed-grid">
-                <div class="loading-box">
-                    <div style="font-size:2rem; animation:spin 1s infinite;">⏳</div>
-                    <p>Loading Royal Collection...</p>
-                </div>
+                <p style="text-align:center; grid-column:1/-1;">Loading...</p>
             </div>
         </main>
 
         <footer class="royal-footer">
-            <div class="ns-logo-text" style="font-size: 2.5rem;">NS</div>
-            <div style="margin: 20px 0;">
-                <a href="#" style="color:var(--dark-maroon); text-decoration:none; font-weight:bold;">Home</a> • 
-                <a href="contact.html" style="color:var(--dark-maroon); text-decoration:none; font-weight:bold;">Contact</a>
-            </div>
             <p>© 2026 NS Shop • Rajasthan</p>
         </footer>
+    </div>
 
-    </div> <script type="module" src="app.js"></script>
+    <script type="module" src="app.js"></script>
 
 </body>
 </html>
