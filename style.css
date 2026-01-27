@@ -80,6 +80,29 @@ body {
     }
 }
 
+/* --- NS SHOP LOGO STYLE (Index Page Ke Liye) --- */
+.ns-logo-text {
+    font-family: var(--font-heading); /* Wahi royal font */
+    font-size: 3.5rem;                /* Size kaafi bada kar diya */
+    font-weight: 900;                 /* Bohot zyada bold */
+    color: #ffffff;                   /* Text ka color white */
+    text-shadow: 4px 4px 0px #000;    /* Gehri shadow taaki style dikhe */
+    letter-spacing: 3px;              /* Aksharon ke beech gap royal look ke liye */
+    margin: 0;
+    line-height: 1.1;                 /* Line height set ki taaki text kate nahi */
+    text-transform: uppercase;        /* Sab capital mein */
+}
+
+/* Jo niche 'Best Deals' likha hai, usko thoda adjust kiya taaki bade logo ke sath sahi lage */
+.shop-text {
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    font-weight: bold;
+    display: block; /* Nayi line mein dikhane ke liye */
+    margin-bottom: 10px;
+}
+
 /* --- PRODUCT CARD --- */
 .product-card {
     background: white;
