@@ -1,0 +1,176 @@
+/* ===================================
+   NS SHOP 
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Cinzel+Decorative:wght@400;700&family=Philosopher:wght@400;700&display=swap');
+
+:root {
+    --paper-bg: #E3C594; 
+    --dark-maroon: #581612; 
+    --gold-border: #9D7438;
+    --text-color: #3E2723;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Side scroll bilkul band */
+    background-color: var(--paper-bg);
+    background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+    font-family: 'Philosopher', sans-serif;
+    color: var(--text-color);
+}
+
+/* ORNATE BORDER (Mobile pe patla, Laptop pe mota) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border: 2px solid var(--gold-border); /* Mobile ke liye patla */
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* --- WRAPPER (Center Layout) --- */
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+/* --- HEADER --- */
+.royal-header {
+    text-align: center;
+    padding: 15px 10px;
+    background: radial-gradient(circle at top, rgba(255,255,255,0.4), transparent 70%);
+}
+
+/* LOGO (Mobile Size) */
+.ns-logo-text {
+    font-family: 'Rye', serif;
+    font-size: 3rem; /* Mobile par chhota */
+    line-height: 1;
+    background: linear-gradient(to bottom, #B22222, #581612);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 0px var(--gold-border));
+}
+
+.shop-text {
+    font-family: 'Rye', serif;
+    font-size: 1.2rem; /* Mobile par chhota */
+    color: var(--dark-maroon);
+    margin-top: -5px;
+}
+
+/* SEARCH BAR */
+.search-container {
+    background: #FFF8E7;
+    border: 2px solid var(--dark-maroon);
+    border-radius: 50px;
+    padding: 2px 10px;
+    width: 95%; 
+    margin: 10px auto 0;
+    display: flex;
+    align-items: center;
+}
+
+#search-box {
+    border: none; background: transparent; flex: 1;
+    padding: 8px; font-size: 0.9rem; outline: none; color: var(--dark-maroon);
+}
+.search-btn { background: none; border: none; font-size: 1.1rem; }
+
+/* --- GRID (Mobile: 2 Columns Fixed) --- */
+.container { padding: 15px 10px; }
+
+.feed-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* Force 2 Columns */
+    gap: 10px; /* Gap kam kiya taaki screen pe fit aaye */
+}
+
+/* --- PRODUCT CARD (Mobile Compact) --- */
+.product-card {
+    background: #FFF8E7;
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 8px; /* Padding kam ki */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.img-frame {
+    background: #300A08;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 5px;
+    border-radius: 50% 50% 50% 50%; /* Arch Shape */
+    display: flex; align-items: center; justify-content: center;
+    border: 2px double var(--gold-border);
+    overflow: hidden;
+}
+
+.product-img { width: 85%; height: 85%; object-fit: contain; }
+
+.product-title {
+    font-family: 'Rye', serif;
+    color: var(--dark-maroon);
+    font-size: 0.85rem; /* Font chhota kiya */
+    margin-bottom: 5px;
+    height: 2.4em; /* 2 line fix */
+    overflow: hidden;
+    line-height: 1.2em;
+}
+
+/* BUTTONS */
+.btn-amazon {
+    background: #7B1F18; color: #FFD700; text-decoration: none;
+    padding: 5px 0; border-radius: 50px; display: block; width: 100%;
+    font-size: 0.75rem; border: 1px solid #FFD700;
+}
+
+.engagement-bar {
+    display: flex; justify-content: space-between; margin-top: 5px;
+    padding-top: 5px; border-top: 1px dotted var(--gold-border);
+}
+
+.action-btn {
+    background: transparent; border: none;
+    padding: 2px; font-size: 0.7rem; color: var(--dark-maroon);
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.action-btn span:first-child { font-size: 1rem; } /* Icon size */
+
+/* --- 💻 LAPTOP / PC RULES (Bada Screen = Bada Size) --- */
+@media (min-width: 768px) {
+    body::before { border-width: 5px; top: 10px; bottom: 10px; left: 10px; right: 10px; }
+    
+    .ns-logo-text { font-size: 5rem; }
+    .shop-text { font-size: 2rem; margin-top: -10px; }
+    
+    .search-container { width: 50%; padding: 5px 20px; }
+    #search-box { font-size: 1.1rem; }
+    
+    /* 4 Products in one line */
+    .feed-grid { 
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 30px; 
+    }
+    
+    .product-card { padding: 15px; border-width: 2px; }
+    .img-frame { border-width: 4px; margin-bottom: 10px; }
+    .product-title { font-size: 1.2rem; height: auto; }
+    .btn-amazon { padding: 10px 0; font-size: 1rem; }
+    .action-btn { flex-direction: row; gap: 5px; font-size: 0.9rem; }
+}
+
+/* EXTRAS */
+.royal-footer { text-align: center; padding: 20px; border-top: 2px dashed var(--dark-maroon); margin-top: 20px; font-size: 0.8rem; }
+.comments-section { display: none; background: white; padding: 5px; position: absolute; z-index: 10; border: 1px solid #000; width: 90%; font-size: 0.8rem; }
+.comments-section.active { display: block; }
