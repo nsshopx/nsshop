@@ -1,0 +1,844 @@
+/* ===================================
+   NS SHOP - ROYAL RAJASTHANI THEME
+   Advanced & Unique Styling
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* RAJASTHANI ROYAL PALETTE */
+:root {
+    --saffron: #FF9933; 
+    --royal-blue: #003366;
+    --red: #D70040;
+    --gold: #FFD700;
+    --bg: #FFF5E6;
+    --cream: #FFFEF7;
+    --terracotta: #E2725B;
+    --emerald: #50C878;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Poppins', sans-serif;
+    --shadow-royal: 0 8px 25px rgba(0, 51, 102, 0.15);
+    --shadow-gold: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* BODY & GLOBAL */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Decorative Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 153, 51, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 51, 102, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* LAYOUT CONTAINERS */
+.royal-header, .royal-footer, .container {
+    width: 100%;
+    margin: 0 auto; 
+    background-color: var(--bg);
+    box-sizing: border-box;
+    max-width: 1400px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================
+   ROYAL HEADER WITH NS SHOP LOGO
+   =================================== */
+.royal-header {
+    background: linear-gradient(135deg, var(--red) 0%, #a00030 100%);
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+    border-bottom: 6px solid var(--gold);
+    position: relative;
+    box-shadow: var(--shadow-royal);
+    overflow: hidden;
+}
+
+/* Animated Border Pattern */
+.royal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px,
+        var(--gold) 15px,
+        var(--saffron) 15px,
+        var(--saffron) 30px
+    );
+    animation: slidePattern 20s linear infinite;
+}
+
+@keyframes slidePattern {
+    0% { background-position: 0 0; }
+    100% { background-position: 30px 0; }
+}
+
+/* NS Shop Logo Container */
+.brand-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+/* NS Shop Logo SVG */
+.ns-logo {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Brand Name Styling */
+.brand-name { 
+    font-family: var(--font-heading); 
+    font-size: 2.2rem; 
+    margin: 0;
+    background: linear-gradient(135deg, var(--gold) 0%, #fff 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 3px;
+    position: relative;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: var(--gold);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+/* Decorative Corners */
+.corner-pattern {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    opacity: 0.15;
+}
+
+.corner-pattern.top-left {
+    top: 10px;
+    left: 10px;
+    border-top: 3px solid var(--gold);
+    border-left: 3px solid var(--gold);
+}
+
+.corner-pattern.top-right {
+    top: 10px;
+    right: 10px;
+    border-top: 3px solid var(--gold);
+    border-right: 3px solid var(--gold);
+}
+
+/* ===================================
+   SEARCH BAR - ENHANCED
+   =================================== */
+.search-container { 
+    margin-top: 15px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 8px; 
+    padding: 0 10px;
+    position: relative;
+}
+
+#search-box { 
+    padding: 12px 20px;
+    width: 80%;
+    max-width: 500px;
+    border: 3px solid var(--gold);
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+#search-box:focus {
+    border-color: var(--saffron);
+    box-shadow: 0 0 15px rgba(255, 153, 51, 0.4);
+    transform: scale(1.02);
+}
+
+.search-container button { 
+    background: linear-gradient(135deg, var(--gold) 0%, var(--saffron) 100%);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-gold);
+    transition: all 0.3s ease;
+}
+
+.search-container button:hover {
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 153, 51, 0.5);
+}
+
+/* ===================================
+   MAIN FEED CONTAINER
+   =================================== */
+.container { 
+    padding: 20px 15px;
+    flex: 1;
+    background: transparent;
+}
+
+.feed-grid { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    animation: fadeInGrid 0.6s ease-in;
+}
+
+@keyframes fadeInGrid {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================
+   PRODUCT CARD - ADVANCED DESIGN
+   =================================== */
+.product-card {
+    background: linear-gradient(135deg, #ffffff 0%, var(--cream) 100%);
+    border: 2px solid var(--saffron);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-royal);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 0 25px rgba(255, 153, 51, 0.2);
+    border-color: var(--gold);
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+/* Royal Badge */
+.product-card::after {
+    content: '👑';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover::after {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+/* Image Frame */
+.img-frame { 
+    padding: 15px;
+    background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+    border-bottom: 2px dashed var(--saffron);
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.img-frame::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid rgba(255, 153, 51, 0.2);
+    border-radius: 8px;
+}
+
+.product-img { 
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Card Body */
+.card-body { 
+    padding: 15px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+}
+
+.product-title { 
+    font-weight: 600;
+    color: var(--royal-blue);
+    margin-bottom: 12px;
+    font-size: 1rem;
+    line-height: 1.3em;
+    height: 2.6em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    transition: color 0.3s ease;
+}
+
+.product-card:hover .product-title {
+    color: var(--red);
+}
+
+/* ===================================
+   BUTTONS - PREMIUM STYLE
+   =================================== */
+.btn-amazon {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000;
+    padding: 12px 0;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3);
+}
+
+.btn-amazon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-amazon:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-amazon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.5);
+}
+
+/* Engagement Bar */
+.engagement-bar { 
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 2px solid rgba(255, 153, 51, 0.2);
+    background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.05), transparent);
+}
+
+.action-btn { 
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.action-btn:hover {
+    background: rgba(255, 153, 51, 0.1);
+    transform: scale(1.1);
+    color: var(--red);
+}
+
+.heart-icon { 
+    color: var(--red);
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.action-btn:hover .heart-icon {
+    transform: scale(1.3);
+    animation: heartBeat 0.5s ease;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.3); }
+    50% { transform: scale(1.1); }
+    75% { transform: scale(1.4); }
+}
+
+/* ===================================
+   COMMENTS SECTION
+   =================================== */
+.comments-section { 
+    padding: 10px;
+    background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
+    border-top: 2px solid var(--saffron);
+    display: none;
+    margin-top: 8px;
+    border-radius: 0 0 10px 10px;
+}
+
+.comments-section.active { 
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 300px; }
+}
+
+.comment-list { 
+    max-height: 120px;
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    padding-right: 5px;
+}
+
+.comment-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.comment-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.comment-list::-webkit-scrollbar-thumb {
+    background: var(--saffron);
+    border-radius: 10px;
+}
+
+.comment-item { 
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.comment-form { 
+    display: flex;
+    gap: 5px;
+}
+
+.comment-input { 
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid var(--saffron);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.comment-input:focus {
+    border-color: var(--gold);
+}
+
+/* ===================================
+   FOOTER - ROYAL DESIGN
+   =================================== */
+.royal-footer { 
+    text-align: center;
+    padding: 25px;
+    color: var(--royal-blue);
+    font-size: 0.85rem;
+    border-top: 4px solid var(--saffron);
+    background: linear-gradient(135deg, var(--bg) 0%, var(--cream) 100%);
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.royal-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+}
+
+/* ===================================
+   RESPONSIVE - TABLET & LAPTOP
+   =================================== */
+@media (min-width: 768px) {
+    .feed-grid { 
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .brand-name {
+        font-size: 2.8rem;
+    }
+    
+    .ns-logo {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .feed-grid { 
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+    
+    .royal-header, .royal-footer, .container {
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .img-frame {
+        height: 220px;
+    }
+}
+
+/* ===================================
+   ADMIN & CONTACT PAGES
+   =================================== */
+.admin-body { 
+    background: linear-gradient(135deg, var(--royal-blue) 0%, #001a33 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.admin-container { 
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    border: 6px double var(--gold);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.royal-form input, .royal-form textarea { 
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    transition: border-color 0.3s ease;
+}
+
+.royal-form input:focus, .royal-form textarea:focus {
+    border-color: var(--saffron);
+    outline: none;
+}
+
+.btn-royal { 
+    background: linear-gradient(135deg, var(--red) 0%, #a00030 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-royal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(215, 0, 64, 0.4);
+}
+
+.btn-small { 
+    padding: 6px 12px;
+    background: var(--royal-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    background: var(--saffron);
+}
+
+.btn-delete { 
+    background: #FF5252;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background: #ff1744;
+    transform: scale(1.05);
+}
+
+.admin-item { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border: 2px solid #eee;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.admin-item:hover {
+    border-color: var(--saffron);
+    background: rgba(255, 153, 51, 0.05);
+}
+
+.admin-thumb { 
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+}
+
+/* Toast Notifications */
+#toast-box { 
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.toast { 
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideInRight 0.4s ease;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.toast.success { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); }
+.toast.error { background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); }
+
+/* Back Link */
+.back-link { 
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover { 
+    background: white;
+    color: var(--red);
+    transform: translateY(-2px);
+}
+
+/* Contact Card */
+.contact-card { 
+    background: white;
+    border: 6px double var(--gold);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-top: 30px;
+}
+
+.profile-frame { 
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    padding: 6px;
+    border: 3px dashed var(--saffron);
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+}
+
+.profile-img { 
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.royal-title { 
+    font-family: var(--font-heading);
+    color: var(--royal-blue);
+    margin: 10px 0;
+    font-size: 1.8rem;
+}
+
+.social-links { 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-btn { 
+    padding: 14px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.social-btn:hover { 
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.insta { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.fb { background: linear-gradient(135deg, #1877F2 0%, #0d65d9 100%); }
+.mail { background: linear-gradient(135deg, #EA4335 0%, #d33426 100%); }
+
+/* ===================================
+   LOADING ANIMATION
+   =================================== */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 153, 51, 0.2);
+    border-top-color: var(--saffron);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 50px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
