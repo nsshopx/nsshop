@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampark Karein | Desi Deals</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="royal-header">
+        <div class="pattern-top"></div>
+        <h1 class="brand-name">✨ Sampark Kaksh ✨</h1> <a href="index.html" class="back-link">⬅️ Dukan Par Wapas Jayein</a>
+    </header>
+
+    <main class="container">
+        
+        <div class="contact-card">
+            <div class="profile-frame">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin" class="profile-img">
+            </div>
+            <h2 class="royal-title">Hukum (Admin)</h2>
+            <p style="color:#666; font-size:0.9rem;">Founder & Affiliate Partner</p>
+            
+            <hr class="divider">
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/nsshopx?igsh=MXg1cnVscGdjM2JzNg==" target="_blank" class="social-btn insta">
+                    📸 Instagram
+                </a>
+                <a href="https://www.facebook.com/share/1AUCbrYiJ1/" target="_blank" class="social-btn fb">
+                    blue Facebook
+                </a>
+                <a href="mailto:nsshopx@gmail.com" class="social-btn mail">
+                    📧 Email Karein
+                </a>
+            </div>
+        </div>
+
+        <div class="contact-card" style="margin-top: 20px;">
+            <h3 class="royal-title">📩 Sandesh Bhejein</h3>
+            <form id="msg-form" class="royal-form">
+                <input type="text" id="u-name" placeholder="Aapka Naam" required>
+                <input type="email" id="u-email" placeholder="Aapka Email" required>
+                <textarea id="u-msg" rows="4" placeholder="Likho Hukum..." required></textarea>
+                <button type="submit" id="send-btn" class="btn-royal">Sandesh Bhejein 🚀</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="royal-footer">
+        <p>© 2026 Rajasthani Deals • Sampark</p>
+    </footer>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+        // APNI API KEY AUR URL YAHAN DAALEIN (Wahi jo app.js mein hai)
+        const URL = 'https://ihxdiydlnzpncqdylsla.supabase.co';
+        const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImloeGRpeWRsbnpwbmNxZHlsc2xhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5Njg0NDcsImV4cCI6MjA4NDU0NDQ0N30.BYj3iokkcNC88u_xrFRvbFnSdpqbLz_ZWP_zvNWfamc';
+        const supabase = createClient(URL, KEY);
+
+        document.getElementById('msg-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('send-btn');
+            btn.innerText = "Bhej raha hu...";
+            btn.disabled = true;
+
+            const name = document.getElementById('u-name').value;
+            const email = document.getElementById('u-email').value;
+            const msg = document.getElementById('u-msg').value;
+
+            const { error } = await supabase.from('messages').insert([
+                { name: name, email: email, message: msg }
+            ]);
+
+            if(error) {
+                alert("Error: " + error.message);
+                btn.innerText = "Dobara Koshish Karein";
+            } else {
+                alert("Sandesh mil gaya Hukum! Hum jaldi sampark karenge. 🙏");
+                document.getElementById('msg-form').reset();
+                btn.innerText = "Sandesh Bhejein 🚀";
+            }
+            btn.disabled = false;
+        });
+    </script>
+
+</body>
+</html>
