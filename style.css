@@ -43,7 +43,7 @@ body {
 /* --- YAHAN CHANGE KIYA HAI (Website Name Style) --- */
 .brand-name { 
     font-family: var(--font-heading); 
-    font-size: 2.8rem; /* Size bada kar diya (pehle 1.5rem tha) */
+    font-size: 2.7rem; /* Size bada kar diya (pehle 1.5rem tha) */
     margin: 5px 0; 
     text-shadow: 3px 3px 0px #000; /* Shadow thoda heavy kiya style ke liye */
     letter-spacing: 2px; /* Aksharon ke beech gap badhaya stylish look ke liye */
@@ -83,7 +83,7 @@ body {
 /* --- NS SHOP LOGO STYLE (Index Page Ke Liye) --- */
 .ns-logo-text {
     font-family: var(--font-heading); /* Wahi royal font */
-    font-size: 3.5rem;                /* Size kaafi bada kar diya */
+    font-size: 3.1rem;                /* Size kaafi bada kar diya */
     font-weight: 900;                 /* Bohot zyada bold */
     color: #ffffff;                   /* Text ka color white */
     text-shadow: 4px 4px 0px #000;    /* Gehri shadow taaki style dikhe */
