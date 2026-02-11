@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="hi">
-<head>
+<html lang="en-IN"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>NS Shop - Best Online Deals & Royal Artifacts</title>
+    <title>NS Shop - Best Online Deals & Royal Artifacts in India</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <meta name="description" content="Welcome to NS Shop. Find the best deals on electronics, gadgets, and royal artifacts. Your trusted online store in India.">
+    <meta name="description" content="Welcome to NS Shop (Nitin's Store). Find the best deals on electronics, gadgets, and royal artifacts. Your trusted online store in Rajasthan, India.">
+
+    <meta name="keywords" content="NS Shop, NS Store, Online Shopping, Royal Artifacts, Best Deals, Electronics, Rajasthan Shop, nsshop.in">
+
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nsshop.in/">
+
+    <meta property="og:title" content="NS Shop - Best Online Deals">
+    <meta property="og:description" content="Shop for premium electronics and royal artifacts at NS Shop.">
+    <meta property="og:image" content="https://nsshop.in/favicon.png"> <meta property="og:url" content="https://nsshop.in/">
+    <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="style.css">
 
@@ -19,7 +28,13 @@
       "name": "NS Shop",
       "url": "https://nsshop.in",
       "logo": "https://nsshop.in/favicon.png",
-      "description": "Best online deals and royal artifacts store.",
+      "description": "Best online deals and royal artifacts store in India.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Alwar",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://nsshop.in/?search={search_term_string}",
@@ -33,13 +48,13 @@
     <div class="page-wrapper">
         <header class="royal-header">
             <div class="ns-logo-container">
-                <div class="ns-logo-text">NS SH🛒P</div>
+                <h1 class="ns-logo-text">NS SH🛒P</h1>
                 <span class="shop-text">BEST DEALS🎁</span>
             </div>
 
             <div class="search-container">
-                <input type="text" id="search-box" placeholder="Search...">
-                <button class="search-btn" onclick="runSearch()">🔍</button>
+                <input type="text" id="search-box" placeholder="Search products..." aria-label="Search products">
+                <button class="search-btn" onclick="runSearch()" aria-label="Search">🔍</button>
             </div>
             
             <div style="margin-top:10px; text-align:center;">
@@ -49,12 +64,13 @@
 
         <main class="container">
             <div id="product-feed" class="feed-grid">
-                <p style="text-align:center; grid-column:1/-1;">Loading...</p>
+                <p style="text-align:center; grid-column:1/-1;">Loading latest deals...</p>
             </div>
         </main>
 
         <footer class="royal-footer">
-            <p>© 2026 NS Shop • Rajasthan</p>
+            <p>© 2026 NS Shop • Alwar, Rajasthan</p>
+            <p style="font-size:0.8em;"><a href="https://nsshop.in" style="color:inherit; text-decoration:none;">Visit NS Shop Online</a></p>
         </footer>
     </div>
 
